@@ -1,8 +1,8 @@
 class Helix < Formula
   desc "Post-modern modal text editor"
   homepage "https://helix-editor.com"
-  url "https://github.com/helix-editor/helix/releases/download/v0.0.9/helix-v0.0.9-x86_64-macos.tar.xz"
-  sha256 "b0ad1b07dafe0a15fa1dd6d8e700b23988cc46ae4238371ccc75fc57ede4bab4"
+  url "https://github.com/helix-editor/helix/releases/download/v0.0.10/helix-v0.0.10-x86_64-macos.tar.xz"
+  sha256 "7fa351f81aedf80e0d8abc04afa79426e78d3b98f727851497146908622a6f28"
   license "MPL-2.0"
 
   bottle :unneeded
