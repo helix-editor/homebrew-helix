@@ -1,8 +1,15 @@
+# frozen_string_literal: true
+
 class Helix < Formula
-  version "22.03"
   desc "Post-modern modal text editor"
   homepage "https://helix-editor.com"
+  version "22.03"
   license "MPL-2.0"
+
+  head do
+    url "https://github.com/helix-editor/helix.git", branch: "master"
+    depends_on "rust" => :build
+  end
 
   on_macos do
     # We don't need a Hardware::CPU.intel? check here. The x86_64 binary
@@ -19,7 +26,29 @@ class Helix < Formula
   end
 
   def install
-    libexec.install Dir["*"]
-    (bin/"hx").write_env_script(libexec/"hx", :HELIX_RUNTIME => libexec/"runtime")
+    if build.head?
+      system "cargo", "install", *std_cargo_args(path: "helix-term")
+      libexec.install "runtime"
+      libexec.install "target/release/hx"
+    else
+      libexec.install Dir["*"]
+    end
+
+    (bin / "hx").write_env_script(libexec / "hx", HELIX_RUNTIME: libexec / "runtime")
+  end
+
+  def caveats
+    if build.head?
+      <<~EOS
+        Building tree-sitter grammars:
+
+        Tree-sitter grammars must be fetched and compiled if not pre-packaged.
+        Fetch grammars with `hx --grammar fetch` (requires git) and compile them with `hx --grammar build` (requires a C compiler).
+      EOS
+    end
+  end
+
+  test do
+    system bin / "hx", "--version"
   end
 end
