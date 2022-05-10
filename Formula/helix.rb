@@ -37,17 +37,6 @@ class Helix < Formula
     (bin / "hx").write_env_script(libexec / "hx", HELIX_RUNTIME: libexec / "runtime")
   end
 
-  def caveats
-    if build.head?
-      <<~EOS
-        Building tree-sitter grammars:
-
-        Tree-sitter grammars must be fetched and compiled if not pre-packaged.
-        Fetch grammars with `hx --grammar fetch` (requires git) and compile them with `hx --grammar build` (requires a C compiler).
-      EOS
-    end
-  end
-
   test do
     system bin / "hx", "--version"
   end
