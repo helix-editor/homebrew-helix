@@ -34,9 +34,6 @@ class Helix < Formula
       libexec.install Dir["*"]
     end
 
-    bash_completion.install "contrib/completion/hx.bash" => "hx"
-    fish_completion.install "contrib/completion/hx.fish"
-    zsh_completion.install "contrib/completion/hx.zsh" => "_hx"
     (bin / "hx").write_env_script(libexec / "hx", HELIX_RUNTIME: libexec / "runtime")
   end
 
