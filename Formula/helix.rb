@@ -15,13 +15,13 @@ class Helix < Formula
     # We don't need a Hardware::CPU.intel? check here. The x86_64 binary
     # will also work for ARM64.
     url "https://github.com/helix-editor/helix/releases/download/#{version}/helix-#{version}-x86_64-macos.tar.xz"
-    sha256 "8c4d2d8ba06702bd7381a853539de0faf9d9d050a982e5faf496e5b3a5c8c871"
+    sha256 "b76fba41375794ba8be8f848a9c480604945f51ec171ce7dfd3327722c2b8d18"
   end
 
   on_linux do
     if Hardware::CPU.intel?
       url "https://github.com/helix-editor/helix/releases/download/#{version}/helix-#{version}-x86_64-linux.tar.xz"
-      sha256 "75d932308ae221247b2c905e5dee0da9b0d53312910b695c8611fc4bf108e730"
+      sha256 "73eb3fa54858d81dc7f393166044f30a0c04eeb9f88f49971146ef9ddfc043f9"
     end
   end
 
