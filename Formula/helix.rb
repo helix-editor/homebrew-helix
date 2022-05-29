@@ -26,6 +26,10 @@ class Helix < Formula
   end
 
   def install
+    bash_completion.install "contrib/completion/hx.bash" => "hx"
+    fish_completion.install "contrib/completion/hx.fish"
+    zsh_completion.install "contrib/completion/hx.zsh" => "_hx"
+
     if build.head?
       system "cargo", "install", *std_cargo_args(path: "helix-term")
       libexec.install "runtime"
