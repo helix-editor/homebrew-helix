@@ -32,6 +32,7 @@ class Helix < Formula
 
     if build.head?
       system "cargo", "install", *std_cargo_args(path: "helix-term")
+      rm_r "runtime/grammars/sources/"
       libexec.install "runtime"
       libexec.install "target/release/hx"
     else
